@@ -439,17 +439,22 @@ function wp_print_revision_templates() {
 						<span class="date">({{ data.attributes.dateShort }})</span>
 					</div>
 				<# if ( 'to' === data.type && data.attributes.restoreUrl ) { #>
-					<input  <?php if ( wp_check_post_lock( $post->ID ) ) { ?>
-						disabled="disabled"
-					<?php } else { ?>
-						<# if ( data.attributes.current ) { #>
-							disabled="disabled"
-						<# } #>
-					<?php } ?>
-					<# if ( data.attributes.autosave ) { #>
-						type="button" class="restore-revision button button-primary" value="<?php esc_attr_e( 'Restore This Autosave' ); ?>" />
+					<# if ( data.attributes.current ) { #>
+						<input disabled="disabled" type="button" class="restore-revision button button-primary" value="<?php esc_attr_e( 'Current Revision' ); ?>" />
 					<# } else { #>
-						type="button" class="restore-revision button button-primary" value="<?php esc_attr_e( 'Restore This Revision' ); ?>" />
+
+						<input  <?php if ( wp_check_post_lock( $post->ID ) ) { ?>
+							disabled="disabled"
+						<?php } else { ?>
+							<# if ( data.attributes.current ) { #>
+								disabled="disabled"
+							<# } #>
+						<?php } ?>
+						<# if ( data.attributes.autosave ) { #>
+							type="button" class="restore-revision button button-primary" value="<?php esc_attr_e( 'Restore This Autosave' ); ?>" />
+						<# } else { #>
+							type="button" class="restore-revision button button-primary" value="<?php esc_attr_e( 'Restore This Revision' ); ?>" />
+						<# } #>
 					<# } #>
 				<# } #>
 			</div>
